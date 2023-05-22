@@ -7,3 +7,70 @@
 Maviue is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
+def ask_question(question, choices):
+    print(question)
+    for i, choice in enumerate(choices):
+        print(f"{i + 1}. {choice}")
+    while True:
+        answer = input("Enter your choice (1, 2, ...): ")
+        if answer.isdigit() and 1 <= int(answer) <= len(choices):
+            return int(answer)
+        else:
+            print("Invalid choice. Please try again.")
+
+def ask_follow_up(question):
+    while True:
+        answer = input(question)
+        if len(answer) >= 7:
+            return answer
+        else:
+            print("Reason should be at least 7 words. Please try again.")
+
+# Questions and Choices
+questions = [
+    "Kilala mo ba ako?",
+    "Mahal mo ba ako?",
+    "Kaibigan lang ba turing mo sa akin?",
+    "Minsan ba naisip mo na lumayo nalang sa akin or iwasan ako?",
+    "Kung may pag-asa pang maging tayo ulit, meron pa nga ba?",
+    "What if ligawan kita sa ayaw mo, lalayuan mo ba ako?"
+]
+
+choices = [
+    ["Oo", "Hindi mashyado"],
+    ["1. Oo", "2. Hindi"],
+    ["A. Oo", "B. Higit pa sa kaibigan"],
+    ["A. Oo", "B. Hindi"],
+    ["A. Oo", "B. Wala asa ka pa!"],
+    ["A. Oo, pero?", "B. Hindi, at bakit?"]
+]
+
+# Interaction Loop
+answers = []
+
+for i in range(len(questions)):
+    question = questions[i]
+    choice = choices[i]
+    answer = ask_question(question, choice)
+    
+    if i == 0 or i == 1:
+        answers.append(answer)
+    else:
+        follow_up = ask_follow_up("Bakit? ")
+        answers.append(follow_up)
+
+# Display Answers
+print("\n--- Results ---")
+for i in range(len(questions)):
+    print(f"{questions[i]}: {answers[i]}")
+
+
+
+
+
+
+
+
+
+
+
